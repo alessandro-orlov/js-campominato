@@ -8,7 +8,7 @@ Infine il programma ci comunica il punteggio ovvero il numero delle volte che l'
 
 // Selezioniamo la difficoltà di gioco
 var selezioneDifficolta = parseInt(prompt('scegli la dificoltà: 1 per Facile, 2 per Normale, 3 per Difficile'));
-while (selezioneDifficolta != 1 && selezioneDifficolta != 2 && selezioneDifficolta != 3) {
+while ( selezioneDifficolta != 1 && selezioneDifficolta != 2 && selezioneDifficolta != 3 ) {
   selezioneDifficolta = parseInt(prompt('Errore! Digita 1 o 2 o 3'));
 }
 var dificoltaGioco;
@@ -21,38 +21,47 @@ var dificoltaGioco;
   }
 console.log('la dificoltà di gioco è ' + dificoltaGioco);
 
-//Chiediamo un numero all'utente
-var numeroUtente = parseInt(prompt('Inserisci un numero da 1 a 100'));
-while((numeroUtente <= 100 && numeroUtente == 0 || numeroUtente > 100) || isNaN(numeroUtente)) {
+
+// Lets the game begin
+var i = 0
+var numeroPresente = false;
+var punteggio = 1;
+
+//verifichiamo se il numero utente è presente nell'array per 5 volte
+while ( (numeroPresente == false) && (i < (dificoltaGioco - 16)) ) {
+
+  //numero di 16 cifre
+  var numeroMine = campoMinato(16, dificoltaGioco);
+  console.log(numeroMine);
+
+  //chidiamo il numero all'utente
+  var numeroUtente = parseInt(prompt('inserisci un numero da 1 a 100'));
+  // Validazione numero utente
+  while((numeroUtente <= 100 && numeroUtente == 0 || numeroUtente > 100) || isNaN(numeroUtente)) {
   numeroUtente = parseInt(prompt('Errore! Inserisci un numero da 1 a 100'));
-}
-console.log('Numero digitato dall\'utente ' + numeroUtente);
-
-
-//Campo minato di 16 mine
-// var campoMinato = campoMinato(16, dificoltaGioco);
-// console.log(campoMinato);
-var campoMinato = [15, 77, 88, 99, 2, 7];
-console.log(campoMinato);
-
-//Lets the game begin
-var gameOver = 'BOOM!!! Hai perso! Il tuo punteggio è: ' + punteggio;
-var punteggio = 0;
-var i = 1;
-while ((i <= 5 && (numeroUtente === campoMinato[i]) )) {
-  if( !(numeroUtente === campoMinato[i]) ) {
-    numeroUtente = parseInt(prompt('Fai il next step: digita un numero da 1 a 100'));
-    console.log(numeroUtente);
-  } else {
-    alert(gameOver);
   }
-  console.log(campoMinato);
-  var punteggioFinale = punteggio + i;
+  console.log('Numero digitato dall\'utente ' + numeroUtente);
+
+  if(numeroMine.includes(numeroUtente)) {
+    numeroPresente = true
+    }
+
+  // Calcolo punteggio
+  punteggioFinale = punteggio + i;
+  console.log('Il tuo punteggio corrente è: ' + punteggioFinale);
+
+  // Fine di iterazione
   i++
 }
 
-//Output
-alert('punteggio finale dell\'utente è ' + punteggioFinale);
+// Output
+if (numeroPresente == true) {
+  console.log('BOOM!!! Hai perso! Il tuo punteggio è ' + punteggioFinale);
+  alert('BOOM!!! Hai perso! Il tuo punteggio è ' + punteggioFinale);
+} else {
+  console.log('Congratulazioni, hai vinto! Il numero è assente '  + punteggioFinale);
+  alert('Congratulazioni, hai vinto! Il numero è assente '  + punteggioFinale);
+}
 
 
 //---------------------FUNCTIONS------------------------------------

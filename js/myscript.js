@@ -30,21 +30,30 @@ console.log('Numero digitato dall\'utente ' + numeroUtente);
 
 
 //Campo minato di 16 mine
-var campoMinato = campoMinato(16, dificoltaGioco);
+// var campoMinato = campoMinato(16, dificoltaGioco);
+// console.log(campoMinato);
+var campoMinato = [15, 77, 88, 99, 2, 7];
 console.log(campoMinato);
 
-
 //Lets the game begin
-var gameOver = 'gioco finito'
-var i = 0;
-while (i<10) {
+var gameOver = 'BOOM!!! Hai perso! Il tuo punteggio è: ' + punteggio;
+var punteggio = 0;
+var i = 1;
+while ((i <= 5 && (numeroUtente === campoMinato[i]) )) {
   if( !(numeroUtente === campoMinato[i]) ) {
     numeroUtente = parseInt(prompt('Fai il next step: digita un numero da 1 a 100'));
+    console.log(numeroUtente);
   } else {
     alert(gameOver);
   }
+  console.log(campoMinato);
+  var punteggioFinale = punteggio + i;
   i++
 }
+
+//Output
+alert('punteggio finale dell\'utente è ' + punteggioFinale);
+
 
 //---------------------FUNCTIONS------------------------------------
 

@@ -6,8 +6,8 @@ La partita termina quando l'utente inserisce un numero "Vietato" OPPURE raggiung
 Infine il programma ci comunica il punteggio ovvero il numero delle volte che l'utente ha digitato il numero consentito.
 */
 
-// Opzione di difficoltà:
-//  --> Imposto la quantità di numeri generati(che equivalgono alle mine)
+// OPZIONI GIOCO
+// Il valore == alla quantita di numeri generati (che equivalgono a "mine")
 var mineSulCampo = 16;
 
 // Selezioniamo la difficoltà di gioco
@@ -37,13 +37,14 @@ var numeroMine = campoMinato(mineSulCampo, difficoltaGioco);
 console.log(numeroMine);
 
 // Verifichiamo se il numero utente è presente nell'array per un'numero di volte
-// equivalente alla difficoltà impostata.
 while ( (numeroPresente == false) && (i < (difficoltaGioco - mineSulCampo)) ) {
   // Chidiamo il numero all'utente
   var numeroUtente = parseInt(prompt('inserisci un numero da 1 a ' +  difficoltaGioco));
+
   // Validazione numero utente
-  while((numeroUtente <= difficoltaGioco && numeroUtente == 0 || numeroUtente > difficoltaGioco) || isNaN(numeroUtente)) {
+  while((numeroUtente == 0 || numeroUtente > difficoltaGioco) || isNaN(numeroUtente)) {
   numeroUtente = parseInt(prompt('Errore! Inserisci un numero da 1 a ' +  difficoltaGioco));
+
   }
   console.log('Numero digitato dall\'utente ' + numeroUtente);
 
@@ -76,19 +77,16 @@ if (numeroPresente == true) {
 // quantity     ==    quantita numeti generati (le mine sul campo)
 // difficulty   ==    difficoltà (range dei numeri generati)
 function campoMinato(quantity, difficulty) {
-
-  //Array di numeri generati
+  // Array di numeri generati
   var listaArray = [];
-
-  //creo l'arrey che deve contenere non meno di numero di elementi pari al valore di "quantity"
-  while(listaArray.length <= quantity - 1 ) {
+  // Creo l'arrey che deve contenere non meno di numero di elementi pari al valore di "quantity"
+  while(listaArray.length < quantity) {
     var numeroRandom = Math.floor(Math.random() * difficulty) + 1;
     console.log(numeroRandom);
     if(!listaArray.includes(numeroRandom)) {
       listaArray.push(numeroRandom);
     }
   }
-
   // Output
   return listaArray;
 }

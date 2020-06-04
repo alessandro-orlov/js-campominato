@@ -28,27 +28,39 @@ var difficoltaGioco;
 
 
 // Lets the game begin
-var i = 0
-var numeroPresente = false;
-var punteggio = 1;
 
 // Generiamo i 16 numeri ( Campo minato ) utlizzando la funzuione
 var numeroMine = campoMinato(mineSulCampo, difficoltaGioco);
 console.log(numeroMine);
 
-// Verifichiamo se il numero utente è presente nell'array per un'numero di volte
+
+var i = 0
+var numeroPresente = arrayCheck(numeroUtente, numeroMine);
+var punteggio = 1;
+var numeroUtenteArray = [];
+
+// Verifichiamo se il numero utente è presente nell'array delle mine
 while ( (numeroPresente == false) && (i < (difficoltaGioco - mineSulCampo)) ) {
+
   // Chidiamo il numero all'utente
   var numeroUtente = parseInt(prompt('inserisci un numero da 1 a ' +  difficoltaGioco));
+  if(!numeroUtenteArray.includes(numeroUtente) || numeroUtente == null || numeroUtente == '' || isNaN(numeroUtente) ){
+    numeroUtenteArray.push(parseInt(numeroUtente));
+  } else {
+      numeroUtente = parseInt(prompt('Errore: inserisci un numero diverso'));
+      numeroUtenteArray.push(parseInt(numeroUtente));
+    }
 
   // Validazione numero utente
   while((numeroUtente == 0 || numeroUtente > difficoltaGioco) || isNaN(numeroUtente)) {
-  numeroUtente = parseInt(prompt('Errore! Inserisci un numero da 1 a ' +  difficoltaGioco));
+    numeroUtente = parseInt(prompt('Errore! Inserisci un numero da 1 a ' +  difficoltaGioco));
 
   }
   console.log('Numero digitato dall\'utente ' + numeroUtente);
+  console.log('Fine: lista dei numeri digitati dall\'utente: ' + numeroUtenteArray);
 
-  // Verifica se il numero emmesso dall'utente è presente tra i numeri generati (campoMinato)
+
+  // Verifica se il numero emmesso dall'utente è presente tra i numeri generati (numeroMine)
   if(numeroMine.includes(numeroUtente)) {
     numeroPresente = true
     }
@@ -60,6 +72,7 @@ while ( (numeroPresente == false) && (i < (difficoltaGioco - mineSulCampo)) ) {
   // Fine di iterazione
   i++
 }
+
 
 // Output
 if (numeroPresente == true) {
@@ -89,4 +102,23 @@ function campoMinato(quantity, difficulty) {
   }
   // Output
   return listaArray;
+}
+
+// Funzione arrayCheck
+//Verifico se un elemento è presente nella lista Array
+// --> value è l'elemento che deve essere controllato
+// --> array è la lsta nella quale eseguire il check
+//Restituisce il valore BOOLEANO True or False
+function arrayCheck(value, array) {
+  //Variabile di controllo
+  var check = false;
+
+  //Verifico ogni elemento della lista Array
+  for (var i = 0; i < array.length; i++) {
+    if(value == array[i]) {
+      check = true
+    }
+  }
+  // Restituisco il valore
+  return check;
 }

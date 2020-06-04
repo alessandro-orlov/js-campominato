@@ -6,6 +6,10 @@ La partita termina quando l'utente inserisce un numero "Vietato" OPPURE raggiung
 Infine il programma ci comunica il punteggio ovvero il numero delle volte che l'utente ha digitato il numero consentito.
 */
 
+//Opzione di difficoltà:
+//Imposto il numero di numeri generati(che equivalgono alle mine)
+var mineSulCampo = 16;
+
 // Selezioniamo la difficoltà di gioco
 var selezioneDifficolta = parseInt(prompt('scegli la difficoltà: 1 per Facile, 2 per Normale, 3 per Difficile'));
 // Validazione selezioneDifficolta
@@ -29,17 +33,17 @@ var numeroPresente = false;
 var punteggio = 1;
 
 // Generiamo i 16 numeri ( Campo minato )
-var numeroMine = campoMinato(16, difficoltaGioco);
+var numeroMine = campoMinato(mineSulCampo, difficoltaGioco);
 console.log(numeroMine);
 
 //verifichiamo se il numero utente è presente nell'array per 5 volte
-while ( (numeroPresente == false) && (i < (difficoltaGioco - 16)) ) {
+while ( (numeroPresente == false) && (i < (difficoltaGioco - mineSulCampo)) ) {
 
   //chidiamo il numero all'utente
   var numeroUtente = parseInt(prompt('inserisci un numero da 1 a ' +  difficoltaGioco));
   // Validazione numero utente
-  while((numeroUtente <= 100 && numeroUtente == 0 || numeroUtente > 100) || isNaN(numeroUtente)) {
-  numeroUtente = parseInt(prompt('Errore! Inserisci un numero da 1 a 100'));
+  while((numeroUtente <= difficoltaGioco && numeroUtente == 0 || numeroUtente > difficoltaGioco) || isNaN(numeroUtente)) {
+  numeroUtente = parseInt(prompt('Errore! Inserisci un numero da 1 a ' +  difficoltaGioco));
   }
   console.log('Numero digitato dall\'utente ' + numeroUtente);
 
@@ -68,7 +72,7 @@ if (numeroPresente == true) {
 //---------------------FUNCTIONS------------------------------------
 
 // Funzione campoMinato:
-// quantity     ==    quantita numeti generati
+// quantity     ==    quantita numeti generati (le mine sul campo)
 // difficulty   ==    difficoltà (range dei numeri generati)
 function campoMinato(quantity, difficulty) {
   //lista numeri

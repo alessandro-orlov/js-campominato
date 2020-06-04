@@ -8,68 +8,72 @@ Infine il programma ci comunica il punteggio ovvero il numero delle volte che l'
 
 // Opzione di difficoltà:
 //  --> Imposto la quantità di numeri generati(che equivalgono alle mine)
-var mineSulCampo = 16;
+// var mineSulCampo = 16;
+//
+// // Selezioniamo la difficoltà di gioco
+// var selezioneDifficolta = parseInt(prompt('scegli la difficoltà: 1 per Facile, 2 per Normale, 3 per Difficile'));
+// // Validazione selezioneDifficolta
+// while ( selezioneDifficolta != 1 && selezioneDifficolta != 2 && selezioneDifficolta != 3 ) {
+//   selezioneDifficolta = parseInt(prompt('Errore! Digita 1 o 2 o 3'));
+// }
+// var difficoltaGioco;
+//   if (selezioneDifficolta == 1) {
+//       difficoltaGioco = 100; // Facile
+//     } else if (selezioneDifficolta == 2) {
+//       difficoltaGioco = 80; // Normale
+//     } else if (selezioneDifficolta == 3) {
+//       difficoltaGioco = 50; // Difficile
+//   }
+//   console.log('la difficoltà di gioco è ' + difficoltaGioco);
+//
+//
+// // Lets the game begin
+// var i = 0
+// var numeroPresente = false;
+// var punteggio = 1;
+//
+// // Generiamo i 16 numeri ( Campo minato ) utlizzando la funzuione
+// var numeroMine = campoMinato(mineSulCampo, difficoltaGioco);
+// console.log(numeroMine);
+//
+// // Verifichiamo se il numero utente è presente nell'array per un'numero di volte
+// // equivalente alla difficoltà impostata.
+// while ( (numeroPresente == false) && (i < (difficoltaGioco - mineSulCampo)) ) {
+//
+//   // Chidiamo il numero all'utente
+//   var numeroUtente = parseInt(prompt('inserisci un numero da 1 a ' +  difficoltaGioco));
+//   // Validazione numero utente
+//   while((numeroUtente <= difficoltaGioco && numeroUtente == 0 || numeroUtente > difficoltaGioco) || isNaN(numeroUtente)) {
+//   numeroUtente = parseInt(prompt('Errore! Inserisci un numero da 1 a ' +  difficoltaGioco));
+//   }
+//   console.log('Numero digitato dall\'utente ' + numeroUtente);
+//
+//   // Verifica se il numero emmesso dall'utente è presente tra i numeri generati (campoMinato)
+//   if(numeroMine.includes(numeroUtente)) {
+//     numeroPresente = true
+//     }
+//
+//   // Calcolo punteggio
+//   punteggioFinale = punteggio + i;
+//   console.log('Il tuo punteggio corrente è: ' + punteggioFinale);
+//
+//   // Fine di iterazione
+//   i++
+// }
+//
+// // Output
+// if (numeroPresente == true) {
+//   console.log('BOOM!!! Hai perso! Il tuo punteggio è ' + punteggioFinale);
+//   alert('BOOM!!! Hai perso! Il tuo punteggio è ' + punteggioFinale);
+// } else {
+//   console.log('Congratulazioni, hai vinto! '  + punteggioFinale);
+//   alert('Congratulazioni, hai vinto! '  + punteggioFinale);
+// }
 
-// Selezioniamo la difficoltà di gioco
-var selezioneDifficolta = parseInt(prompt('scegli la difficoltà: 1 per Facile, 2 per Normale, 3 per Difficile'));
-// Validazione selezioneDifficolta
-while ( selezioneDifficolta != 1 && selezioneDifficolta != 2 && selezioneDifficolta != 3 ) {
-  selezioneDifficolta = parseInt(prompt('Errore! Digita 1 o 2 o 3'));
-}
-var difficoltaGioco;
-  if (selezioneDifficolta == 1) {
-      difficoltaGioco = 100; // Facile
-    } else if (selezioneDifficolta == 2) {
-      difficoltaGioco = 80; // Normale
-    } else if (selezioneDifficolta == 3) {
-      difficoltaGioco = 50; // Difficile
-  }
-  console.log('la difficoltà di gioco è ' + difficoltaGioco);
-
-
-// Lets the game begin
-var i = 0
-var numeroPresente = false;
-var punteggio = 1;
-
+// DEBUG:
 // Generiamo i 16 numeri ( Campo minato ) utlizzando la funzuione
-var numeroMine = campoMinato(mineSulCampo, difficoltaGioco);
+var numeroMine = campoMinato(5, 8);
 console.log(numeroMine);
-
-// Verifichiamo se il numero utente è presente nell'array per un'numero di volte
-// equivalente alla difficoltà impostata.
-while ( (numeroPresente == false) && (i < (difficoltaGioco - mineSulCampo)) ) {
-
-  // Chidiamo il numero all'utente
-  var numeroUtente = parseInt(prompt('inserisci un numero da 1 a ' +  difficoltaGioco));
-  // Validazione numero utente
-  while((numeroUtente <= difficoltaGioco && numeroUtente == 0 || numeroUtente > difficoltaGioco) || isNaN(numeroUtente)) {
-  numeroUtente = parseInt(prompt('Errore! Inserisci un numero da 1 a ' +  difficoltaGioco));
-  }
-  console.log('Numero digitato dall\'utente ' + numeroUtente);
-
-  // Verifica se il numero emmesso dall'utente è presente tra i numeri generati (campoMinato)
-  if(numeroMine.includes(numeroUtente)) {
-    numeroPresente = true
-    }
-
-  // Calcolo punteggio
-  punteggioFinale = punteggio + i;
-  console.log('Il tuo punteggio corrente è: ' + punteggioFinale);
-
-  // Fine di iterazione
-  i++
-}
-
-// Output
-if (numeroPresente == true) {
-  console.log('BOOM!!! Hai perso! Il tuo punteggio è ' + punteggioFinale);
-  alert('BOOM!!! Hai perso! Il tuo punteggio è ' + punteggioFinale);
-} else {
-  console.log('Congratulazioni, hai vinto! '  + punteggioFinale);
-  alert('Congratulazioni, hai vinto! '  + punteggioFinale);
-}
-
 
 //---------------------FUNCTIONS------------------------------------
 
@@ -77,15 +81,22 @@ if (numeroPresente == true) {
 // quantity     ==    quantita numeti generati (le mine sul campo)
 // difficulty   ==    difficoltà (range dei numeri generati)
 function campoMinato(quantity, difficulty) {
-  //lista numeri
+
+  //Array di numeri generati
   var listaArray = [];
-  //creo l'arrey
-  for (var i = 1; i <= quantity; i++) {
+
+  var lunghezzaArray = listaArray.length;
+  console.log(lunghezzaArray)
+
+  //creo l'arrey che deve contenere non meno di numero di elementi pari al valore di "quantity"
+  while(lunghezzaArray == quantity) {
     var numeroRandom = Math.floor(Math.random() * difficulty) + 1;
+    console.log(numeroRandom);
     if(!listaArray.includes(numeroRandom)) {
-    listaArray.push(numeroRandom);
+      listaArray.push(numeroRandom);
     }
   }
+
   // Output
   return listaArray;
 }
